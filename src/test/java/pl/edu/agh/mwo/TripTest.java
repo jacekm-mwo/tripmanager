@@ -1,5 +1,6 @@
 package pl.edu.agh.mwo;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -43,15 +44,24 @@ public class TripTest {
 	@Test
 	public void testAddPhoto() {
 		Photo photo = new Photo();
-	
-	
         Trip trip = new Trip("nazwa", "opis");
 		trip.addPhoto(photo);
         
-//		trip.getPhotoList().
 		assertTrue(trip.getPhotoList().contains(photo));
 		
 	}
 	
+	
+	@Test
+	public void testNoPhoto() {
+		Photo photo = new Photo();
+		Photo anotherPhoto = new Photo();
+	
+        Trip trip = new Trip("nazwa", "opis");
+		trip.addPhoto(photo);
+        
+		assertFalse(trip.getPhotoList().contains(anotherPhoto));
+				
+	}
 
 }
