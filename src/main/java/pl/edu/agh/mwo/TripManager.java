@@ -1,5 +1,5 @@
 package pl.edu.agh.mwo;
-import java.util.*;
+import java.util.HashMap;
 
 public class TripManager {
 	private HashMap<String,Trip> tripList;
@@ -23,6 +23,13 @@ public class TripManager {
 
 	public void remove(String name) {
 		tripList.remove(name);
+	}
+	
+	public Trip findTrip(String tripName) {
+		Trip result = tripList.get(tripName);
+		
+		return result;
+		
 	}
 	
 }

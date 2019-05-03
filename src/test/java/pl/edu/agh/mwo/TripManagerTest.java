@@ -59,4 +59,22 @@ public class TripManagerTest {
 		assertEquals(2, tripManager.getTrips().size());
 		
 	}
+	
+	@Test
+	public void testfindTrip() throws Exception {
+		
+		tripManager.add(trip2);
+		Trip a = tripManager.findTrip("Zawoja");
+
+		assertEquals("Zawoja", a.getName());
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testfindTripNull() throws Exception {
+		
+		tripManager.add(trip2);
+		Trip a = tripManager.findTrip("Katowice");
+
+		assertEquals("Dawoja", a.getName());
+	}
 }
