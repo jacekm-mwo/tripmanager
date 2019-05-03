@@ -1,6 +1,8 @@
 package pl.edu.agh.mwo;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,18 +12,20 @@ public class PhotoTest {
 	
 	@Before
 	public void setUp() {
-		Photo photo = new Photo();
+		photo = new Photo();
+		String comment = "hahahaha";
+		photo.addComment(comment);
 		
 	}
 	
 	
 	@Test
 	public void testAddComment() {
-		
-		//photo.addComment("hahahaha");
-		assertNotNull(photo.addComment("hahahaha"));
-		
-		
+
+	    String comment = "hahahaha";  
+		assertEquals(1, photo.getCommentList().size());
+		assertTrue(photo.getCommentList().contains(comment));
+
 	}
 	
 }

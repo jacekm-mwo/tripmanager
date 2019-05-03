@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Trip {
 	private String name;
 	private String description;
+	private ArrayList<Photo> photoList = new ArrayList<>();
 	
 	public Trip(String name, String description) {
 		this.name = name;
@@ -15,8 +16,7 @@ public class Trip {
 		return photoList;
 	}
 
-	private ArrayList<Photo> photoList = new ArrayList<>();
-
+	
 	public String getName() {
 		return name;
 	}
