@@ -1,5 +1,6 @@
 package pl.edu.agh.mwo;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -23,5 +24,33 @@ public class TripTest {
 		assertEquals("zmienionyOpis", trip.getDescription());
 		
 	}
+	    
+	
+	@Test
+	public void testGetPhotos() {
+		Trip trip = new Trip("nazwa", "opis");
+		Photo photo = new Photo();
+		Photo photo2 = new Photo();
+		
+		assertEquals(0, trip.getPhotos().size());
+		trip.addPhoto(photo);
+		trip.addPhoto(photo2);
+
+		assertEquals(2, trip.getPhotos().size());
+		
+	}
+	
+	@Test
+	public void testAddPhoto():
+		Photo photo = new Photo();
+	
+	
+        Trip trip = new Trip("nazwa", "opis");
+		trip.addPhoto(photo);
+        
+		assert.assertTrue(trip.getPhotos().contains("nazwa"));
+		
+	}
+	
 
 }
