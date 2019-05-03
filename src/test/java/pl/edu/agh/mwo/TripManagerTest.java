@@ -33,6 +33,7 @@ public class TripManagerTest {
 		tripManager.add(trip);
 	}
 
+	
 	@Test (expected = AssertionError.class)
 	public void testRemoveTrip() throws Exception {
 		tripManager.add(trip);
@@ -40,6 +41,15 @@ public class TripManagerTest {
 		tripManager.remove(trip.getName());
 		assertEquals(0, tripManager.getTrips().size());
 		fail("chcemy zespuc");
+		}
+	
+	@Test
+	public void testRemoveTripSucceed() throws Exception {
+		tripManager.add(trip);
+		assertEquals(1, tripManager.getTrips().size());
+		tripManager.remove(trip.getName());
+		assertEquals(0, tripManager.getTrips().size());
+
 		}
 	
 	@Test
