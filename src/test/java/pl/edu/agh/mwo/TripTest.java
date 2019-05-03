@@ -11,5 +11,17 @@ public class TripTest {
 		assertEquals("nazwa", trip.getName());
 		assertEquals("opis", trip.getDescription());
 	}
+	
+	
+	@Test
+	public void testSetters() {
+		Trip trip = new Trip("nazwa", "opis");
+		trip.setDescription("zmienionyOpis");
+		trip.setName("Aruba");
+		
+		assertEquals("Aruba", trip.getName());
+		assertEquals("zmienionyOpis", trip.getDescription());
+		
+	}
 
 }
