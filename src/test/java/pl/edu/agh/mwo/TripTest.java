@@ -32,23 +32,24 @@ public class TripTest {
 		Photo photo = new Photo();
 		Photo photo2 = new Photo();
 		
-		assertEquals(0, trip.getPhotos().size());
+		assertEquals(0, trip.getPhotoList().size());
 		trip.addPhoto(photo);
 		trip.addPhoto(photo2);
 
-		assertEquals(2, trip.getPhotos().size());
+		assertEquals(2, trip.getPhotoList().size());
 		
 	}
 	
 	@Test
-	public void testAddPhoto():
+	public void testAddPhoto() {
 		Photo photo = new Photo();
 	
 	
         Trip trip = new Trip("nazwa", "opis");
 		trip.addPhoto(photo);
         
-		assert.assertTrue(trip.getPhotos().contains("nazwa"));
+//		trip.getPhotoList().
+		assertTrue(trip.getPhotoList().contains(photo));
 		
 	}
 	
