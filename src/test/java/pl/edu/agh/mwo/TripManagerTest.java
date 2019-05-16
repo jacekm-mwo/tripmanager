@@ -1,6 +1,11 @@
 package pl.edu.agh.mwo;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.hasEntry;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
+import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -61,20 +66,56 @@ public class TripManagerTest {
 	}
 	
 	@Test
-	public void testfindTrip() throws Exception {
+	public void testfindZawojaTrip() throws Exception {
 		
 		tripManager.add(trip2);
-		Trip a = tripManager.findTrip("Zawoja");
+		HashMap<String,Trip> res = tripManager.findTrip("Zawoja");
 
-		assertEquals("Zawoja", a.getName());
+		assertThat(res, hasEntry("Zawoja", trip2));
+
 	}
 	
-	@Test(expected = NullPointerException.class)
-	public void testfindTripNull() throws Exception {
+	@Test
+	public void testfindAllTrips() throws Exception {
 		
 		tripManager.add(trip2);
-		Trip a = tripManager.findTrip("Katowice");
+		HashMap<String,Trip> res = tripManager.findTrip("");
 
-		assertEquals("Dawoja", a.getName());
+		assertThat(res, hasEntry("Zawoja", trip2));
+
+	}
+	
+	@Test
+	public void testfindTripByDescription() throws Exception {
+		
+		tripManager.add(trip2);
+		HashMap<String,Trip> res = tripManager.findTrip("kolonie");
+
+		assertThat(res, hasEntry("Zawoja", trip2));
+
+	}
+	
+	
+	@Test
+	public void testfindTripByComment() throws Exception {
+		
+		tripManager.add(trip2);
+		Photo photo = new Photo();
+		photo.addComment("very nice sheep amigo");
+		trip2.addPhoto(photo);
+		HashMap<String,Trip> res = tripManager.findTrip("sheep");
+
+		assertThat(res, hasEntry("Zawoja", trip2));
+
+	}
+	
+	
+	@Test
+	public void testfindTripNoResult() throws Exception {
+		
+		tripManager.add(trip2);
+		HashMap<String,Trip> res = tripManager.findTrip("beach");
+
+		assertTrue(res.isEmpty());
 	}
 }

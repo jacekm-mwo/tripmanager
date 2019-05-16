@@ -1,6 +1,7 @@
 package pl.edu.agh.mwo;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TripManager {
 	private HashMap<String,Trip> tripList;
@@ -27,25 +28,44 @@ public class TripManager {
 		tripList.remove(name);
 	}
 	
-	public HashMap<String,Trip> findTrip(String tripName) {
+	public HashMap<String,Trip> findTrip(String searchedKeyWord) {
 		
 		HashMap<String,Trip> res = new HashMap<String,Trip>();
 		
-		if (tripName.equals("")) {
-			return res;
+		Pattern pattern = Pattern.compile(".*" + searchedKeyWord + ".*");
+		
+		
+		
+		if (searchedKeyWord.equals("")) {
+			return tripList;
 		} 
 		
 		
-		if (tripList.get(tripName) != null) {
-			res.put(tripName, tripList.get(tripName));
+		if (tripList.get(searchedKeyWord) != null) {
+			res.put(searchedKeyWord, tripList.get(searchedKeyWord));
 			
-			return res;
 		}
 		
 		for (String name : tripList.keySet()) {
 			
-			if (tripList.get(name).getDescription().contains(tripName)) {
-				res.put(tripName, tripList.get(tripName));
+			if (tripList.get(name).getDescription().contains(searchedKeyWord)) {
+				res.put(name, tripList.get(name));
+			}
+		}
+
+		for (String name : tripList.keySet()) {
+			
+			for (Photo photo : tripList.get(name).getPhotoList()) {
+				for (String comment : photo.getCommentList()) {
+					Matcher matcher = pattern.matcher(comment);
+					if (matcher.find()) {
+						res.put(name, tripList.get(name));	
+					}
+				}
+//				if (photo.getCommentList().contains(searchedKeyWord)) {
+//					res.put(name, tripList.get(name));	
+//				}
+				
 			}
 		}
 
